@@ -1,4 +1,4 @@
-/* eslint-disable no-useless-escape */
+/* eslint-disable no-useless-escape,brace-style */
 import escapeRegExp from "lodash/escapeRegExp";
 import isEmpty from "lodash/isEmpty";
 
