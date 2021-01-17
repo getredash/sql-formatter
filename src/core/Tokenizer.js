@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import isEmpty from "lodash/isEmpty";
 import escapeRegExp from "lodash/escapeRegExp";
 import tokenTypes from "./tokenTypes";
