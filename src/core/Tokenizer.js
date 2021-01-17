@@ -118,7 +118,8 @@ export default class Tokenizer {
         if (paren.length === 1) {
             // A single punctuation character
             return escapeRegExp(paren);
-        } else {
+        }
+        else {
             // longer word
             return "\\b" + paren + "\\b";
         }
