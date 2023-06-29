@@ -507,7 +507,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.WHITESPACE_REGEX = /^(\s+)/;
 	        this.NUMBER_REGEX = /^((-\s*)?[0-9]+(\.[0-9]+)?|0x[0-9a-fA-F]+|0b[01]+)\b/;
-	        this.OPERATOR_REGEX = /^(!=|<>|==|<=|>=|!<|!>|\|\||::|->>|->|~~\*|~~|!~~\*|!~~|~\*|!~\*|!~|.)/;
+	        this.OPERATOR_REGEX = /^(!=|<>|<=>|==|<=|>=|!<|!>|\|\||::|->>|->|~~\*|~~|!~~\*|!~~|~\*|!~\*|!~|.)/;
 
 	        this.BLOCK_COMMENT_REGEX = /^(\/\*[^]*?(?:\*\/|$))/;
 	        this.LINE_COMMENT_REGEX = this.createLineCommentRegex(cfg.lineCommentTypes);
@@ -564,7 +564,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            "\"\"": "((\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*(\"|$))+)",
 	            "''": "(('[^'\\\\]*(?:\\\\.[^'\\\\]*)*('|$))+)",
 	            "N''": "((N'[^N'\\\\]*(?:\\\\.[^N'\\\\]*)*('|$))+)",
-	            "{{}}": "({{(.*?)}})"
+	            "{{}}": "({{(.*?)}})",
+	            "${}": "(\\${(.*?)})"
 	        };
 
 	        return stringTypes.map(function (t) {
@@ -2064,11 +2065,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                reservedWords: reservedWords,
 	                reservedToplevelWords: reservedToplevelWords,
 	                reservedNewlineWords: reservedNewlineWords,
-	                stringTypes: ["\"\"", "N''", "''", "``", "[]", "{{}}"],
+	                stringTypes: ["\"\"", "N''", "''", "``", "[]", "{{}}", "${}"],
 	                openParens: ["(", "CASE"],
 	                closeParens: [")", "END"],
 	                indexedPlaceholderTypes: ["?"],
-	                namedPlaceholderTypes: ["@", ":"],
+	                namedPlaceholderTypes: ["@", ":", "$"],
 	                lineCommentTypes: ["#", "--"]
 	            });
 	        }
