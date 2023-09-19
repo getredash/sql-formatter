@@ -411,4 +411,10 @@ describe("StandardSqlFormatter", function() {
         expect(sqlFormatter.format(queryText)).toBe(expectedFormattedQueryText);
     });
 
+    it("formats array operations correctly", function() {
+        expect(sqlFormatter.format("ids && '{639}'")).toBe("ids && '{639}'");
+        expect(sqlFormatter.format("ids @> '{639}'")).toBe("ids @> '{639}'");
+        expect(sqlFormatter.format("ids <@ '{639}'")).toBe("ids <@ '{639}'");
+    });
+
 });
