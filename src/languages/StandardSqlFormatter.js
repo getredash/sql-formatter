@@ -38,7 +38,7 @@ const reservedWords = [
     "TABLE", "TABLES", "TEMPORARY", "TERMINATED", "THEN", "TO", "TRAILING", "TRANSACTIONAL", "TRUE", "TRUNCATE", "TYPE", "TYPES",
     "UNCOMMITTED", "UNIQUE", "UNLOCK", "UNSIGNED", "USAGE", "USE", "USING",
     "VARIABLES", "VIEW", "WHEN", "WITH", "WORK", "WRITE",
-    "YEAR_MONTH"
+    "YEAR_MONTH", "MATERIALIZED", "SCHEDULE", "CRON", "AT", "TIME", "ZONE", "REFRESH", "STREAMING"
 ];
 
 const reservedToplevelWords = [
@@ -55,7 +55,10 @@ const reservedToplevelWords = [
     "SELECT", "SET CURRENT SCHEMA", "SET SCHEMA", "SET",
     "UNION ALL", "UNION", "UPDATE",
     "VALUES",
-    "WHERE"
+    "WHERE",
+    "CREATE MATERIALIZED VIEW",
+    "CREATE STREAMING TABLE",
+    "CREATE OR REFRESH STREAMIMG TABLE",
 ];
 
 const reservedNewlineWords = [
@@ -68,7 +71,11 @@ const reservedNewlineWords = [
     "OR", "OUTER APPLY", "OUTER JOIN",
     "RIGHT JOIN", "RIGHT OUTER JOIN",
     "WHEN",
-    "XOR"
+    "XOR",
+    "PARTIONED BY",
+    "COMMENT",
+    "TBLPROPERTIES",
+    "SCHEDULE",
 ];
 
 let tokenizer;
@@ -93,7 +100,7 @@ export default class StandardSqlFormatter {
                 reservedWords,
                 reservedToplevelWords,
                 reservedNewlineWords,
-                stringTypes: [`""`, "N''", "''", "``", "[]", "{{}}", "${}"],
+                stringTypes: [`""`, "N''", "r''", "''", "``", "[]", "{{}}", "${}"],
                 openParens: ["(", "CASE"],
                 closeParens: [")", "END"],
                 indexedPlaceholderTypes: ["?"],

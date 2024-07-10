@@ -19,7 +19,7 @@ export default class Tokenizer {
     constructor(cfg) {
         this.WHITESPACE_REGEX = /^(\s+)/;
         this.NUMBER_REGEX = /^((-\s*)?[0-9]+(\.[0-9]+)?|0x[0-9a-fA-F]+|0b[01]+)\b/;
-        this.OPERATOR_REGEX = /^(!=|<>|<=>|==|<=|>=|!<|!>|\|\||::|->>|->|~~\*|~~|!~~\*|!~~|~\*|!~\*|!~|.)/;
+        this.OPERATOR_REGEX = /^(!=|<>|<=>|==|<=|>=|!<|!>|\|\||::|->>|->|=>|~~\*|~~|!~~\*|!~~|~\*|!~\*|!~|.)/;
 
         this.BLOCK_COMMENT_REGEX = /^(\/\*[^]*?(?:\*\/|$))/;
         this.LINE_COMMENT_REGEX = this.createLineCommentRegex(cfg.lineCommentTypes);
@@ -77,6 +77,7 @@ export default class Tokenizer {
             "N''": "((N'[^N'\\\\]*(?:\\\\.[^N'\\\\]*)*('|$))+)",
             "{{}}": "({{(.*?)}})",
             "${}": "(\\${(.*?)})",
+            "r''": "(r'(.*?)')",
         };
 
         return stringTypes.map(t => patterns[t]).join("|");
